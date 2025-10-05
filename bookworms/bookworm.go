@@ -42,3 +42,27 @@ func loadBookworms(filePath string) ([]Bookworm, error) {
 	}
 	return bookworms, nil
 }
+
+// findCommonBooks returns books that are on more than bookworm's shelf.
+func findCommonBooks(bookworms []Bookworm) []Book {
+	commonBooks := make([]Book, 0)
+	bookCounter := make(map[Book]int)
+
+	// lopp over each bookwarm to get its books
+	for _, bookworm := range bookworms {
+		books := bookworm.Books
+
+		// loop over each book and populate the counter map
+		for _, book := range books {
+			bookCounter[book] = bookCounter[book] + 1
+		}
+	}
+
+	// loop over the counter map and select book with more than 1 count
+	for book, count := range bookCounter {
+		if count > 1 {
+			commonBooks = append(commonBooks, book)
+		}
+	}
+	return commonBooks
+}

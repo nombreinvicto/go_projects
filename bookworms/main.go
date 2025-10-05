@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -13,9 +12,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	for _, bookworm := range bookworms {
-		fmt.Println(bookworm)
-		fmt.Println(strings.Repeat("=", 50))
-	}
-
+	// find the common books of bookworms
+	commonBooks := findCommonBooks(bookworms)
+	fmt.Println(commonBooks)
 }
