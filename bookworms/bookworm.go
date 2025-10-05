@@ -1,6 +1,9 @@
 package main
 
-import "os"
+import (
+	"encoding/json"
+	"os"
+)
 
 // Bookworm Go struct must match the JSON
 // Fields need to be exposed as the decoder
@@ -28,6 +31,14 @@ func loadBookworms(filePath string) ([]Bookworm, error) {
 
 	// os.File implements io.Reader and io.Closer interfaces
 	// remember io.Reader enables reading a stream of data into a slice of bytes
+	var bookworms []Bookworm
 
-	return nil, nil
+	// decode the file and store the content in the value
+	// NewDecoder returns *Decoder
+	// Decode is mathod for *Decoder
+	err = json.NewDecoder(f).Decode(&bookworms)
+	if err != nil {
+		return nil, err
+	}
+	return bookworms, nil
 }
