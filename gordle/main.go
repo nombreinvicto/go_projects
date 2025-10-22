@@ -6,6 +6,9 @@ import (
 )
 
 func main() {
-	g := gordlegame.New(os.Stdin)
-	g.Play()
+
+	const maxAttempts = 6
+	solution := "hello"
+	game := gordlegame.New(os.Stdin, solution, maxAttempts)
+	game.Play()
 }
